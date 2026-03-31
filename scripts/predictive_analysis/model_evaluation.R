@@ -3,8 +3,8 @@ simple_model <- lm(JobSatisfaction ~ Respect_Index, data = train)
 summary(simple_model)
 
 # Multiple Linear Regression — all selected predictors
-multiple_model <- lm(JobSatisfaction ~ Respect_Index + EnvironmentSatisfaction 
-                     + MonthlyIncome + Age + 
+multiple_model <- lm(JobSatisfaction ~ Respect_Index + EnvironmentSatisfaction +
+                     WorkLifeBalance + Age + 
                        YearsAtCompany + JobLevel, data = train)
 summary(multiple_model)
 
@@ -32,3 +32,10 @@ cat("Simple Model MSE:", MSE_simple, "\n")
 cat("Simple Model RMSE:", RMSE_simple, "\n\n")
 cat("Multiple Model MSE:", MSE_multiple, "\n")
 cat("Multiple Model RMSE:", RMSE_multiple, "\n")
+
+
+#MSE: SLR model - 1.158779: Average squared error of actual and predictions
+     #: MLR - 1.163834: Worse than SLR
+
+#RMSE: SLR - 1.076466: Models prediction is off by 1.08 points a large error as the scale is 1-4
+      #MLR - 1.078812: Same as above
