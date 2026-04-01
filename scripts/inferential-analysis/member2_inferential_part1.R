@@ -10,9 +10,7 @@ print(colnames(hr_data))
 str(hr_data[, c("Respect_Index", "JobSatisfaction",
                 "Satisfaction_Category", "Respect_Category")])
 
-# ===============================
-# SECTION 1 — Normality Testing
-# ===============================
+# Normality Testing
 
 # Split Respect_Index into Low and High Satisfaction groups
 low_sat  <- hr_data$Respect_Index[hr_data$JobSatisfaction %in% c(1, 2)]
@@ -73,9 +71,7 @@ dev.off()
 
 cat("Q-Q plots saved to ~/Desktop/tpsm-D3/plots/inferential-analysis/infer_qq_plots.png\n")
 
-# ====================================
-# SECTION 2 — Variance Ratio (F) Test 
-# ====================================
+# Variance Ratio (F) Test 
 
 # H0: Variances of Respect_Index are equal between the two groups
 # H1: Variances of Respect_Index are NOT equal between the two groups
@@ -94,10 +90,8 @@ cat(ifelse(equal_var,
            "-> Will use var.equal = TRUE in t-test\n",
            "-> Will use var.equal = FALSE (Welch t-test)\n"))
 
-# ============================================================
-# SECTION 3 — Two-Sample t-Test 
+# Two-Sample t-Test 
 # One-tailed: High Satisfaction group has HIGHER Respect_Index
-# ============================================================
 
 # H0: Mean Respect_Index is equal in both groups (μ_high = μ_low)
 # H1: Mean Respect_Index is higher in High Satisfaction group (μ_high > μ_low)
@@ -130,10 +124,8 @@ cat("Effect size interpretation:",
            ifelse(abs(cohens_d) < 0.5, "Small",
                   ifelse(abs(cohens_d) < 0.8, "Medium", "Large"))), "\n")
 
-# ============================================================
-# SECTION 4 — One-Sample t-Test 
+# One-Sample t-Test 
 # Does overall mean Respect_Index differ from midpoint 2.5?
-# ============================================================
 
 # H0: Population mean Respect_Index = 2.5 (midpoint of scale 1 to 4)
 # H1: Population mean Respect_Index ≠ 2.5 (two-tailed)
@@ -151,9 +143,7 @@ cat("Decision:", ifelse(one_sample_t$p.value < 0.05,
                         "Reject H0 — mean significantly differs from 2.5",
                         "Fail to reject H0 — mean not significantly different from 2.5"), "\n")
 
-# ============================================================
-# SECTION 5 — Summary Results Table
-# ============================================================
+# Summary Results Table
 
 cat("\n")
 cat(strrep("=", 108), "\n")
