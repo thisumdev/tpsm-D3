@@ -6,6 +6,13 @@ head(hr_data)
 str(hr_data)
 dim(hr_data)
 
+# Split Respect_Index into Low and High Satisfaction groups
+low_sat  = hr_data$Respect_Index[hr_data$JobSatisfaction %in% c(1, 2)]
+high_sat = hr_data$Respect_Index[hr_data$JobSatisfaction %in% c(3, 4)]
+
+length(low_sat)
+length(high_sat)
+
 # Normality Testing
 
 # H0: Respect_Index in the Low Satisfaction group is normally distributed
