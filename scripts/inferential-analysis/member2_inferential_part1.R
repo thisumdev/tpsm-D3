@@ -16,24 +16,6 @@ shapiro.test(low_sat)
 # H1: Respect_Index in the High Satisfaction group is NOT normally distributed
 shapiro.test(high_sat)
 
-# Q-Q Plot for Low Satisfaction group
-qqnorm(low_sat,
-       main = "Q-Q Plot: Respect Index (Low Satisfaction Group)",
-       xlab = "Theoretical Quantiles",
-       ylab = "Sample Quantiles",
-       col  = "tomato",
-       pch  = 16)
-qqline(low_sat, col = "darkred", lwd = 2)
-
-# Q-Q Plot for High Satisfaction group
-qqnorm(high_sat,
-       main = "Q-Q Plot: Respect Index (High Satisfaction Group)",
-       xlab = "Theoretical Quantiles",
-       ylab = "Sample Quantiles",
-       col  = "steelblue",
-       pch  = 16)
-qqline(high_sat, col = "darkblue", lwd = 2)
-
 # Save Q-Q plots to file
 png("~/Desktop/tpsm-D3/plots/inferential-analysis/infer_qq_plots.png",
     width = 900, height = 450)
