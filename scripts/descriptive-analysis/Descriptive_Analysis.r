@@ -35,7 +35,7 @@ respect_summary <- data.frame(
 
 respect_summary
 
-#Histogram with density curve for Respect_Index
+#Histogram for Respect_Index
 hist(data$Respect_Index,
      probability = TRUE,
      main = "Histogram of Respect Index",
@@ -43,11 +43,6 @@ hist(data$Respect_Index,
      col = "lightblue",
      border = "black")
 
-
-
-
-#Shapiro-Wilk normality test for Respect_Index
-shapiro.test( data$Respect_Index)
 
 
 
