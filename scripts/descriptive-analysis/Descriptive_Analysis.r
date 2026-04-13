@@ -49,19 +49,6 @@ hist(data$Respect_Index,
 #Shapiro-Wilk normality test for Respect_Index
 shapiro.test( data$Respect_Index)
 
-#Q-Q plot for Respect_Index
-#Check if data is normally distributed
-#Hypotheses:
-  #H₀: data is normal
-  #H₁: data is not normal
-
-#Shapiro test gives a statistical decision (p-value)
-#Q-Q plot gives a visual check of normality
-#Using both gives stronger justification
-
-qqnorm(data$Respect_Index,
-       main = "Q-Q Plot of Respect Index")
-qqline(data$Respect_Index, col = "red",lwd=2)
 
 
 # Frequency table for JobSatisfaction
@@ -85,14 +72,6 @@ bar_positions<- barplot(job_freq,
                          ylim = c(0, max(job_freq) + 100))
 
 
-
-# Shapiro-Wilk normality test for JobSatisfaction
-shapiro.test(data$JobSatisfaction)
-
-# Q-Q plot for JobSatisfaction
-qqnorm(data$JobSatisfaction,
-       main = "Q-Q Plot of Job Satisfaction")
-qqline(data$JobSatisfaction, col = "red",lwd= 2)
 
 
 
@@ -128,6 +107,12 @@ numeric_summary <- data.frame(
 numeric_summary
 
 
+#Histogram for Respect_Index
+hist(data$Respect_Index,
+     main = "Histogram of Respect_Index",
+     xlab = "Respect_Index",
+     col = "blue",
+     border = "black")
 
 #Histogram for Training Times LastYear
 hist(data$TrainingTimesLastYear,
@@ -170,6 +155,8 @@ hist(data$JobLevel,
      xlab = "Job Level",
      col = "green",
      border = "black")
+
+
 
 
 #Frequency tables
@@ -222,6 +209,16 @@ joblevel_table <- data.frame(
 )
 joblevel_table
 
+# JobSatisfaction frequency
+JobSatisfaction_freq <- table(data$JobSatisfaction)
+JobSatisfaction_table <- data.frame(
+  JobSatisfaction = names(JobSatisfaction_freq),
+  Count = as.vector(JobSatisfaction_freq)
+)
+JobSatisfaction_table
+
+
+
 
 #Bar charts
 
@@ -268,11 +265,18 @@ barplot(joblevel_freq,
         ylab = "Count",
         col = "orange")
 
+# Bar chart for Job satisfaction
+barplot(JobSatisfaction_freq,
+        main = "Job satisfaction Distribution",
+        xlab = "Job satisfaction",
+        ylab = "Count",
+        col = "pink")
 
 
 
 
 
+#Boxplots
 
 #Boxplots for Respect Index
 boxplot(data$Respect_Index,
@@ -311,6 +315,7 @@ boxplot(data$JobLevel,
 
 
 
+
 #Bivariant Analysis
 
 
@@ -333,23 +338,27 @@ boxplot(TrainingTimesLastYear ~ JobSatisfaction, data = data,
         col = "lightblue")
 
 
-#EnvironmentSatisfaction vs JobSatisfaction
-plot(data$EnvironmentSatisfaction, data$JobSatisfaction,
-     main = "Environment Satisfaction vs Job Satisfaction",
-     xlab = "Environment Satisfaction",
+
+
+#RelationshipSatisfaction vs JobSatisfaction
+plot(data$RelationshipSatisfaction, data$JobSatisfaction,
+     main = "Relationship Satisfaction vs Job Satisfaction",
+     xlab = "Relationship Satisfaction",
      ylab = "Job Satisfaction",
      col = "darkgreen",
      pch = 16)
 
-abline(lm(JobSatisfaction ~ EnvironmentSatisfaction, data = data), col = "red", lwd = 2)
+abline(lm(JobSatisfaction ~ RelationshipSatisfaction, data = data), col = "red", lwd = 2)
 
-cor(data$EnvironmentSatisfaction, data$JobSatisfaction)
+cor(data$RelationshipSatisfaction, data$JobSatisfaction)
 
-boxplot(EnvironmentSatisfaction ~ JobSatisfaction, data = data,
+boxplot(RelationshipSatisfaction ~ JobSatisfaction, data = data,
         main ="Environment Satisfaction across Job Satisfaction Levels",
         xlab ="Job Satisfaction",
         ylab ="Environment Satisfaction",
         col ="lightgreen")
+
+
 
 
 #WorkLifeBalance vs JobSatisfaction
@@ -369,6 +378,8 @@ boxplot(WorkLifeBalance ~ JobSatisfaction, data = data,
         xlab = "Job Satisfaction",
         ylab = "Work Life Balance",
         col = "lightpink")
+
+
 
 
 
@@ -401,6 +412,8 @@ quantile(data$JobLevel)
 IQR(data$JobLevel)
 
 
+
+
 #Summary of each attribute
 summary(data$Respect_Index)
 
@@ -417,8 +430,6 @@ summary(data$Age)
 summary(data$YearsAtCompany)
 
 summary(data$JobLevel)
-
-
 
 
 
